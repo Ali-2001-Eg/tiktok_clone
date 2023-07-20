@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class CommentModel {
   String username;
   String comment;
-  final datePublished;
+  final String datePublished;
   List likes;
   String profilePhoto;
   String uid;

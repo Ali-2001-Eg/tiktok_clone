@@ -23,7 +23,7 @@ class CommentsController extends GetxController {
     CommentModel model = CommentModel(
       username: (userDoc.data()! as dynamic)['name'],
       comment: comment.trim(),
-      datePublished: DateTime.now(),
+      datePublished: DateTime.now().toString(),
       likes: [],
       profilePhoto: (userDoc.data()! as dynamic)['profilePhoto'],
       uid: auth.currentUser!.uid,

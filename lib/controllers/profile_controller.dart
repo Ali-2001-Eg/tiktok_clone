@@ -108,9 +108,9 @@ class ProfileController extends GetxController {
     if (!doc.exists) {
       await fireStore
           .collection('users')
-          .doc(_uid.value)
-          .collection('followers')
           .doc(auth.currentUser!.uid)
+          .collection('followers')
+          .doc(_uid.value)
           .set(model.toJson());
       await fireStore
           .collection('users')

@@ -7,11 +7,11 @@ class ExploreController extends GetxController {
 
   List<UserModel> get searchedUser => _searchedUser.value;
 
-  Future<void> searchUser(String searchText) async {
-    // print('Ali');
+  Future<void> searchUser(String? searchText) async {
+    print('Ali');
     _searchedUser.bindStream(fireStore
         .collection('users')
-        .where('name',  isEqualTo: searchText)
+        .where('name',  isGreaterThan: searchText)
         .snapshots()
         .map((query) {
       List<UserModel> user = [];

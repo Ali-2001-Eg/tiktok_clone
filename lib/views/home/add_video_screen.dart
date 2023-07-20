@@ -88,11 +88,10 @@ class AddVideoScreen extends StatelessWidget {
       );
 
   Future<void> pickVideo(ImageSource src, BuildContext context) async {
-     video = await ImagePicker().pickVideo(source: src);
+     var video = await ImagePicker().pickVideo(source: src);
     if (video != null) {
       Get.to(() => ConfirmAddVideoScreen(
           videoFile: File(video.path), videoPath: video.path));
     }
   }
 }
-var video;

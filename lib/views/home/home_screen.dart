@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tiktok_clone/shared/utils/constants.dart';
 import 'package:tiktok_clone/views/home/add_video_screen.dart';
 import 'package:tiktok_clone/views/home/explore_screen.dart';
+import 'package:tiktok_clone/views/home/messages_screen.dart';
 import 'package:tiktok_clone/views/home/profile_screen.dart';
 import 'package:tiktok_clone/views/home/videos_screen.dart';
 
@@ -20,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     const VideosScreen(),
     ExploreScreen(),
     const AddVideoScreen(),
-    const Text('Messages Screen'),
+    const MessagesScreen(),
     ProfileScreen(uid: auth.currentUser!.uid),
   ];
   @override

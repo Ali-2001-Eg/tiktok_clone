@@ -64,8 +64,8 @@ class _SearchedProfileScreenState extends State<SearchedProfileScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ClipOval(
-                              child: Image.network(
-                                controller.user['profilePhoto'],
+                              child: CachedNetworkImage(
+                                imageUrl:controller.user['profilePhoto'],
                                 fit: BoxFit.cover,
                                 height: 100,
                                 width: 100,
@@ -181,25 +181,25 @@ class _SearchedProfileScreenState extends State<SearchedProfileScreen> {
                       ],
                     ),
                     const SizedBox(height: 25,),
-                    GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: controller.user['thumbnail'].length,
-                      gridDelegate:
-                      const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1,
-                        crossAxisSpacing: 5,
-                      ),
-                      itemBuilder: (context, index) {
-                        String thumbnail =
-                        controller.user['thumbnail'][index];
-                        return CachedNetworkImage(
-                          imageUrl: thumbnail,
-                          fit: BoxFit.cover,
-                        );
-                      },
-                    )
+                    // GridView.builder(
+                    //   shrinkWrap: true,
+                    //   physics: const NeverScrollableScrollPhysics(),
+                    //   itemCount: controller.user['thumbnail'].length,
+                    //   gridDelegate:
+                    //   const SliverGridDelegateWithFixedCrossAxisCount(
+                    //     crossAxisCount: 2,
+                    //     childAspectRatio: 1,
+                    //     crossAxisSpacing: 5,
+                    //   ),
+                    //   itemBuilder: (context, index) {
+                    //     String thumbnail =
+                    //     controller.user['thumbnail'][index];
+                    //     return CachedNetworkImage(
+                    //       imageUrl: thumbnail,
+                    //       fit: BoxFit.cover,
+                    //     );
+                    //   },
+                    // )
                   ],
                 ),
               ),

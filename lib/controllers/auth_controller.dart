@@ -15,7 +15,7 @@ import '../shared/utils/constants.dart';
 
 class AuthController extends GetxController {
   bool isLoading = false;
-
+  String displayName = '';
   static AuthController instance = Get.find();
   Future<void> register(
       String username, String email, String password, File? image) async {
@@ -30,6 +30,7 @@ class AuthController extends GetxController {
         await auth
             .createUserWithEmailAndPassword(email: email, password: password)
             .then((value) {
+          displayName = username;
           isLoading = false;
           update();
           return Get.to(() => LoginScreen());
@@ -94,6 +95,7 @@ class AuthController extends GetxController {
     } catch (e) {
       customSnackBar('Invalid', e.toString());
     }
+
     isLoading = false;
     update();
   }
@@ -107,5 +109,10 @@ class AuthController extends GetxController {
       print('Error');
       return customSnackBar('Error', e.toString());
     });
+  }
+  String get getDisplayName {
+    displayName = authController.displayName;
+    update();
+    return displayName;
   }
 }

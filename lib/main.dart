@@ -29,7 +29,9 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: backgroundColor,
       ),
       debugShowCheckedModeBanner: false,
-      home: Storage.getUserLoggedIn ? const HomeScreen() : LoginScreen(),
+      home:
+      Storage.getUserLoggedIn ? const HomeScreen() : LoginScreen()
+      ,
     );
   }
 }

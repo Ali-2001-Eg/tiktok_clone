@@ -49,7 +49,7 @@ class VideoModel {
 
 
 
-  Map<String, dynamic> toSnapshots() {
+  Map<String, dynamic> toMap() {
     return {
       "id": id,
       "username": username,

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tiktok_clone/controllers/comments_controller.dart';
@@ -6,6 +7,7 @@ import 'package:tiktok_clone/models/comment_model.dart';
 import 'package:tiktok_clone/models/video_model.dart';
 import 'package:tiktok_clone/shared/utils/constants.dart';
 import 'package:tiktok_clone/shared/widgets/circle_animation_widget.dart';
+import 'package:tiktok_clone/shared/widgets/custom_date_time_text.dart';
 import 'package:tiktok_clone/shared/widgets/custom_indicator.dart';
 import 'package:tiktok_clone/shared/widgets/custom_video_player.dart';
 
@@ -19,7 +21,7 @@ class VideosScreen extends StatelessWidget {
   Widget build(BuildContext context) {
   final DisplayVideosController controller = Get.put(DisplayVideosController());
     return Scaffold(
-      body: Obx(() => PageView.builder(
+      body: Obx(() => controller.videoList.isEmpty?const Center(child: Text('Add New Videos or Follow other people to have some reals',textAlign: TextAlign.center,style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold,color: Colors.red),),):PageView.builder(
             controller: PageController(initialPage: 0, viewportFraction: 1),
             scrollDirection: Axis.vertical,
             physics: const BouncingScrollPhysics(),
@@ -313,7 +315,7 @@ class VideosScreen extends StatelessWidget {
       return ListTile(
         leading: CircleAvatar(
           backgroundColor: Colors.green,
-          backgroundImage: NetworkImage(comment.profilePhoto),
+          backgroundImage: CachedNetworkImageProvider(comment.profilePhoto),
           radius: 25,
         ),
         title: Row(
@@ -341,8 +343,8 @@ class VideosScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Expanded(
-              child: Text(
-                comment.datePublished.toString(),
+              child: CustomDateTimeText(
+                DateTime.parse(comment.datePublished),
                 style: TextStyle(color: Colors.grey[600], fontSize: 12),
               ),
             ),

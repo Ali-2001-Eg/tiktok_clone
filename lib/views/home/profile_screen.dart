@@ -46,11 +46,13 @@ class ProfileScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ClipOval(
-                          child: Image.network(
-                            controller.user['profilePhoto'],
+                          child: CachedNetworkImage(
+                            imageUrl:controller.user['profilePhoto'],
                             fit: BoxFit.cover,
                             height: 100,
                             width: 100,
+                            errorWidget: (context, url, error) => const Icon(Icons.error),
+                            placeholder: (context, url) => const CustomIndicator(),
                           ),
                         )
                       ],
@@ -162,33 +164,8 @@ class ProfileScreen extends StatelessWidget {
                     }),
                   ],
                 ),
-                const SizedBox(
-                  height: 25,
-                ),
-                Flexible(
-                  child: GridView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: controller.user['thumbnail'].length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      childAspectRatio: 1,
-                      crossAxisSpacing: 5,
-                    ),
-                    itemBuilder: (context, index) {
-                      String thumbnail = controller.user['thumbnail'][index];
-                      VideoPlayerController vid =
-                          VideoPlayerController.network(thumbnail)
-                            ..setVolume(0)
-                            ..pause();
-                      // print(thumbnail);
-                      return VideoPlayer(
-                        vid,
-                      );
-                    },
-                  ),
-                )
+
+
               ],
             ));
       }
